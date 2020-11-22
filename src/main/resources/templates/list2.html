@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>マルバツクイズ</title>
+</head>
+<body>
+	<h1>○×クイズ<br></h1>
+	<h2>クイズ登録画面</h2>
+	<div th:if="${successMessage}">
+		<span th:text="${successMessage}"></span>
+	</div>
+	<div th:if="${errorMessage}">
+		<span th:text="${errorMessage}"></span>
+	</div>
+	<form>
+		<a th:href="@{/page/load}">ファイルを読みこむ</a>
+	</form>
+	<form th:action="@{/page/save}" method="POST">
+		<button type="submit">ファイルを保存する</button>
+	</form>
+
+	<form th:action="@{/page/create}" method="POST">
+		<div>
+			<input type="text" placeholder="問題文" name="question">
+		</div>
+		<div>
+			<select name="answer">
+				<option value="true" selected>○</option>
+				<option value="false">×</option>
+			</select>
+		</div>
+		<button type="submit">登録</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">問題</th>
+				<th scope="col">正解</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="quiz:${quizzes}">
+				<td th:text="${quiz.question}"></td>
+				<td th:text="${quiz.answer} ? '○' : '×'"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<a th:href="@{/page/quiz2}">クイズを開始する</a>
+
+
+
+
+
+</body>
+</html>

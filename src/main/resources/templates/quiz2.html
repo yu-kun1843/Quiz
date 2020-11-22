@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>クイズ</title>
+</head>
+<body>
+	<h2>Quiz</h2>
+
+	<div class="container">
+	<form th:each="quiz: ${quiz_full}" th:action="@{/page/check}" method="GET">
+    <p th:text="${quiz.question}"></p>
+        <input type="hidden" name="question" th:value="${quiz.question}">
+        <button class="btn btn-success" name="answer" value="true">◯</button>
+        <button class="btn btn-danger" name="answer" value="false">×</button>
+    </form>
+</div>
+</body>
+</html>
